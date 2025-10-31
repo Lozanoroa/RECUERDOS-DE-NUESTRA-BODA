@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Jonatan y Michel | Nuestra Boda</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- PRECONNECT + PRELOAD PARA CARGAR FUENTES RÁPIDO EN MÓVILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Themision&display=swap" rel="stylesheet">
+
+    <!-- ESTILO DE FUENTES CON font-display: swap -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Themision&display=swap');
+        
+        body {
+            font-family: 'Old Standard TT', serif;
+            font-display: swap;
+        }
+        .subtitle, .signature-name {
+            font-family: 'Themision', cursive !important;
+            font-display: swap;
+        }
+        .signature {
+            font-family: 'Old Standard TT', serif;
+            font-display: swap;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -23,13 +45,13 @@
 
         <div class="couple-photo-wrapper" onclick="requestPassword()">
             <img src="imagenes/jhonathan y michel.png" alt="Jonatan y Michel" class="couple-photo">
-            <div class="secret-hint"></div>
+            <div class="secret-hint">Toca para ver galería</div>
         </div>
 
         <section class="message">
             <p>
                 Queridos familiares y amigos,<br>
-                Nuestra boda es un día lleno de amor, risas y momentos que atesoraremos por siempre, ¡ustedes fueron parte esencial de esa magia!<br>
+                Nuestra boda es un día lleno de amor, risas y momentos que atesoraremos por siempre, ¡y ustedes fueron parte esencial de esa magia!<br>
                 Queremos revivir cada instante a través de sus ojos, así que los invitamos con todo el corazón a compartir las fotos y videos que capturaron.<br>
                 Cada imagen y cada clip que compartan será un pedacito de felicidad que guardaremos para siempre.<br>
                 ¡Gracias por ser parte de nuestro gran día y por ayudarnos a crear un álbum lleno de amor!
@@ -84,4 +106,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
