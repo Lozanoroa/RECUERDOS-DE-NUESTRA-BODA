@@ -1,0 +1,315 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Old Standard TT', serif;
+    background: #faf7f3;
+    color: #5D4037;
+    text-align: center;
+    min-height: 100vh;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.header-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: default;
+    position: relative;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.header-image-full {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+    display: block;
+}
+
+.title-over-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Old Standard TT', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 700;
+    color: #6D4C41;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.7);
+    white-space: nowrap;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.subtitle, .signature-name {
+    font-family: 'Themysion', cursive !important;
+    font-size: clamp(2.2rem, 6vw, 2.8rem) !important;
+    color: #8D6E63;
+    margin-bottom: 20px;
+}
+
+.signature-name {
+    font-size: clamp(2.1rem, 5.8vw, 2.7rem) !important;
+    color: #6D4C41;
+    margin-top: 6px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 18px;
+    box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: #6D4C41;
+    margin: 10px 0;
+}
+
+.couple-photo-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.couple-photo {
+    width: clamp(220px, 40vw, 280px);
+    height: clamp(220px, 40vw, 280px);
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid #D7CCC8;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.couple-photo-wrapper:hover .couple-photo,
+.couple-photo-wrapper:active .couple-photo {
+    transform: scale(1.05);
+}
+
+.secret-hint {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    color: #A1887F;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.couple-photo-wrapper:hover .secret-hint,
+.couple-photo-wrapper:active .secret-hint {
+    opacity: 1;
+}
+
+.message {
+    font-size: clamp(1rem, 2.8vw, 1.12rem);
+    line-height: 1.8;
+    margin: 30px auto;
+    max-width: 720px;
+    color: #5D4037;
+}
+
+.signature {
+    font-family: 'Old Standard TT', serif;
+    font-size: clamp(1.5rem, 4vw, 1.7rem);
+    color: #8D6E63;
+    margin-top: 20px;
+}
+
+.btn-upload {
+    background: transparent;
+    border: 2.5px solid #A1887F;
+    color: #A1887F;
+    padding: 13px 40px;
+    font-size: clamp(1.1rem, 3vw, 1.2rem);
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 30px auto;
+    display: block;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-upload:hover, .btn-upload:active {
+    background: #A1887F;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #6D4C41;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    z-index: 10;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    margin: 40px 0;
+    padding: 0 10px;
+}
+
+.item {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 16px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.item:hover { transform: translateY(-4px); }
+
+.item img, .item video {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item p {
+    margin-top: 10px;
+    font-style: italic;
+    color: #6D4C41;
+    font-size: 0.95rem;
+    padding: 0 6px;
+}
+
+.qr-section { margin: 45px 0; }
+
+.btn-qr {
+    background: #6D4C41;
+    color: white;
+    padding: 11px 26px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+#qrcode {
+    margin-top: 16px;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#qrcode img {
+    width: 200px;
+    height: 200px;
+    border: 10px solid #D7CCC8;
+    border-radius: 12px;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 15px;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.message-input, .qr-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.btn-upload-modal {
+    background: #6D4C41;
+    color: white;
+    border: none;
+    padding: 13px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.download-btn {
+    display: inline-block;
+    margin: 10px auto 0;
+    padding: 7px 16px;
+    background: #6D4C41;
+    color: white;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    font-weight: bold;
+    border-radius: 25px;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+    text-align: center;
+    min-width: 90px;
+}
+
+.download-btn:hover, .download-btn:active {
+    background: #5D4037;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#uploadStatus.success { color: #2e7d32; }
+#uploadStatus.error { color: #c62828; }
+
+@media (max-width: 480px) {
+    .container { padding: 20px 15px; }
+    .couple-photo { width: 220px; height: 220px; }
+    .btn-upload { padding: 12px 35px; }
+    .gallery { gap: 15px; }
+    .item { padding: 8px; }
+    .download-btn { padding: 6px 14px; font-size: 0.8rem; }
+    .header-image-full { max-height: 200px; }
+    .title-over-image { font-size: clamp(1.5rem, 4.5vw, 2rem); }
+}

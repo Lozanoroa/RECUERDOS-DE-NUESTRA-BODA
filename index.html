@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Jonatan y Michel | Nuestra Boda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Themision&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- IMAGEN SUPERIOR COMO BOTÓN -->
+    <button class="header-button" disabled>
+        <img src="imagenes/FLORES ARRIBA.png" alt="Decoración floral" class="header-image-full">
+        <h1 class="title-over-image">Bienvenidos a Nuestra Boda</h1>
+    </button>
+
+    <!-- PÁGINA PÚBLICA -->
+    <div id="uploadPage" class="container">
+        <p class="subtitle">Jonatan y Michel</p>
+
+        <div class="couple-photo-wrapper" onclick="requestPassword()">
+            <img src="imagenes/jhonathan y michel.png" alt="Jonatan y Michel" class="couple-photo">
+            <div class="secret-hint">Toca para ver galería</div>
+        </div>
+
+        <section class="message">
+            <p>
+                Queridos familiares y amigos,<br>
+                Nuestra boda es un día lleno de amor, risas y momentos que atesoraremos por siempre, ¡y ustedes fueron parte esencial de esa magia!<br>
+                Queremos revivir cada instante a través de sus ojos, así que los invitamos con todo el corazón a compartir las fotos y videos que capturaron.<br>
+                Cada imagen y cada clip que compartan será un pedacito de felicidad que guardaremos para siempre.<br>
+                ¡Gracias por ser parte de nuestro gran día y por ayudarnos a crear un álbum lleno de amor!
+            </p>
+            <p class="signature">Con todo nuestro cariño</p>
+            <p class="signature-name">Jonatan y Michel</p>
+        </section>
+
+        <button onclick="openFilePicker()" class="btn-upload">Subir recuerdo</button>
+    </div>
+
+    <!-- GALERÍA PROTEGIDA -->
+    <div id="galleryPage" class="container" style="display: none;">
+        <button onclick="backToUpload()" class="btn-back">Volver</button>
+        <h1 class="title">Nuestra Galería</h1>
+        <div id="gallery" class="gallery"></div>
+        <div class="qr-section">
+            <button onclick="requestPasswordForQR()" class="btn-qr">Generar QR</button>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+
+    <!-- MODAL SUBIDA -->
+    <div id="uploadModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">X</span>
+            <h2>Subir Recuerdo</h2>
+            <p id="fileName" style="margin:10px 0; color:#6D4C41; font-weight:bold;"></p>
+            <textarea id="message" placeholder="Mensaje opcional (máx. 200 palabras)" class="message-input" maxlength="1000" rows="4"></textarea>
+            <button onclick="confirmUpload()" class="btn-upload-modal">Subir</button>
+            <p id="uploadStatus" style="margin-top:10px; font-size:0.9rem;"></p>
+        </div>
+    </div>
+
+    <!-- MODAL CONTRASEÑA -->
+    <div id="passwordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closePasswordModal()">X</span>
+            <h2>Ingresa la contraseña</h2>
+            <input type="password" id="passwordInput" placeholder="Contraseña" class="qr-input" maxlength="20">
+            <button onclick="checkPassword()" class="btn-upload-modal">Entrar</button>
+        </div>
+    </div>
+
+    <!-- INPUT OCULTO -->
+    <input type="file" id="hiddenFileInput" accept="image/*,video/*" style="display:none;">
+
+    <!-- JSZIP PARA DESCARGAR CON MENSAJE -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
