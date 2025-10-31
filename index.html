@@ -23,13 +23,13 @@
 
         <div class="couple-photo-wrapper" onclick="requestPassword()">
             <img src="imagenes/jhonathan y michel.png" alt="Jonatan y Michel" class="couple-photo">
-            <div class="secret-hint">Toca para ver galería</div>
+            <div class="secret-hint"></div>
         </div>
 
         <section class="message">
             <p>
                 Queridos familiares y amigos,<br>
-                Nuestra boda es un día lleno de amor, risas y momentos que atesoraremos por siempre, ¡y ustedes fueron parte esencial de esa magia!<br>
+                Nuestra boda es un día lleno de amor, risas y momentos que atesoraremos por siempre, ¡ustedes fueron parte esencial de esa magia!<br>
                 Queremos revivir cada instante a través de sus ojos, así que los invitamos con todo el corazón a compartir las fotos y videos que capturaron.<br>
                 Cada imagen y cada clip que compartan será un pedacito de felicidad que guardaremos para siempre.<br>
                 ¡Gracias por ser parte de nuestro gran día y por ayudarnos a crear un álbum lleno de amor!
@@ -77,7 +77,7 @@
     <!-- INPUT OCULTO -->
     <input type="file" id="hiddenFileInput" accept="image/*,video/*" style="display:none;">
 
-    <!-- JSZIP PARA DESCARGAR CON MENSAJE -->
+    <!-- JSZIP + FILE-SAVER -->
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 
