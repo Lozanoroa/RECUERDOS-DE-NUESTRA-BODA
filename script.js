@@ -1,15 +1,15 @@
 // === CONFIGURACIÓN FINAL ===
 const GIST_RAW_URL = "https://gist.githubusercontent.com/Lozanoroa/8ec0bcb515717fda8ed76e7b7d372a93/raw/9f854e05a9e5fabe6eec55ebb3c4e8c6f8f14abc/recuerdos.json";
 const GITHUB_TOKEN = "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";
-const REPO = "Lozanoroa/Recuerdos-De-Nuestra-Boda-Jonathan-y-Michel";
+const REPO = "Lozanoroa/RECUERDOS-DE-NUESTRA-BODA";
 const BRANCH = "main";
-const SITE_URL = "https://lozanoroa.github.io/Recuerdos-De-Nuestra-Boda-Jonathan-y-Michel./";
+const SITE_URL = "https://lozanoroa.github.io/RECUERDOS-DE-NUESTRA-BODA/";
 const SECRET_PASSWORD = "Jonatanymichel";
 
 let selectedFile = null;
 let isAuthenticated = false;
 
-// DETECTAR SI ES MÓVIL (Android/iOS)
+// DETECTAR SI ES MÓVIL
 const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 function openFilePicker() {
@@ -186,20 +186,17 @@ async function loadGallery() {
     }
 }
 
-// DESCARGA SEGÚN DISPOSITIVO
 async function downloadItem(url, message, type) {
     const response = await fetch(url);
     const blob = await response.blob();
     const fileName = url.split('/').pop();
 
     if (isMobile) {
-        // MÓVIL: SOLO EL ARCHIVO
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = fileName;
         a.click();
     } else {
-        // PC: ZIP CON MENSAJE
         const zip = new JSZip();
         zip.file("mensaje.txt", message);
         zip.file(fileName, blob);
