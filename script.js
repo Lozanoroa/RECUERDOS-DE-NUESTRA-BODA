@@ -1,3 +1,4 @@
+
 const GIST_RAW_URL = "https://gist.githubusercontent.com/Lozanoroa/0bd06c7b7a4f932982e3889c1c2f049b/raw/2574f9c6e620bb68fd96e2a564526360690d4daf/recuerdos.json";
 const GITHUB_TOKEN = "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";
 const REPO = "Lozanoroa/RECUERDOS-DE-NUESTRA-BODA";
@@ -7,8 +8,6 @@ const SECRET_PASSWORD = "Jonatanymichel";
 
 let selectedFile = null;
 let isAuthenticated = false;
-
-
 const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 function openFilePicker() {
@@ -118,6 +117,7 @@ async function confirmUpload() {
                 if (isAuthenticated) loadGallery();
             }, 1500);
         } catch (err) {
+            console.error("Error subida:", err);
             status.textContent = 'Error: ' + err.message;
             status.className = 'error';
         }
@@ -129,23 +129,31 @@ async function saveToGist(newItem) {
     let items = [];
     try {
         const res = await fetch(GIST_RAW_URL + '?t=' + Date.now());
+        if (!res.ok) throw new Error("Gist no encontrado");
         items = await res.json();
-    } catch {}
+    } catch (err) {
+        console.error("Error cargando Gist:", err);
+        items = [];
+    }
 
     items.unshift(newItem);
     const updatedJson = JSON.stringify(items, null, 2);
     const gistId = GIST_RAW_URL.match(/\/([^\/]+)\/raw/)[1];
 
-    await fetch(`https://api.github.com/gists/${gistId}`, {
-        method: 'PATCH',
-        headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            files: { "recuerdos.json": { content: updatedJson } }
-        })
-    });
+    try {
+        await fetch(`https://api.github.com/gists/${gistId}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                files: { "recuerdos.json": { content: updatedJson } }
+            })
+        });
+    } catch (err) {
+        console.error("Error actualizando Gist:", err);
+    }
 }
 
 async function loadGallery() {
@@ -156,6 +164,7 @@ async function loadGallery() {
 
     try {
         const res = await fetch(GIST_RAW_URL + '?t=' + Date.now());
+        if (!res.ok) throw new Error("Gist no encontrado");
         const items = await res.json();
 
         gallery.innerHTML = '';
@@ -181,7 +190,8 @@ async function loadGallery() {
             gallery.appendChild(div);
         });
     } catch (err) {
-        gallery.innerHTML = '<p style="color:red;">Error al cargar</p>';
+        console.error("Error cargando galería:", err);
+        gallery.innerHTML = '<p style="color:red;">Error al cargar. Revisa el Gist.</p>';
     }
 }
 
@@ -204,7 +214,8 @@ async function downloadItem(url, message, type) {
     }
 }
 
-function checkQRPassword() {
+// === QR ÚNICO + DESCARGA AUTOMÁTICA ===
+function generateQR() {
     if (!isAuthenticated) {
         requestPasswordForQR();
         return;
@@ -217,10 +228,22 @@ function checkQRPassword() {
     const qrDiv = document.getElementById('qrcode');
     qrDiv.innerHTML = `
         <p style="margin-bottom:12px;color:#6D4C41;font-weight:bold;">Tu QR único</p>
-        <img src="${qrApi}" alt="QR Único">
-        <p style="margin-top:14px;">
-            <a href="${qrApi}" download="QR_Invitado_${uniqueId}.png" style="color:#6D4C41;text-decoration:underline;">Descargar</a>
+        <img src="${qrApi}" alt="QR Único" id="qrImage">
+        <p style="margin-top:14px; color:#6D4C41;">
+            Descargando automáticamente...
         </p>
     `;
-}
 
+    // DESCARGA AUTOMÁTICA
+    const img = document.getElementById('qrImage');
+    img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 400;
+        canvas.height = 400;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(blob => {
+            saveAs(blob, `QR_Invitado_${uniqueId}.png`);
+        });
+    };
+}
