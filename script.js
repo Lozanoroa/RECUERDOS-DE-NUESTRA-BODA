@@ -1,6 +1,6 @@
 
 const GIST_RAW_URL = "https://gist.githubusercontent.com/Lozanoroa/0bd06c7b7a4f932982e3889c1c2f049b/raw/2574f9c6e620bb68fd96e2a564526360690d4daf/recuerdos.json";
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN = "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";
 const REPO = "Lozanoroa/RECUERDOS-DE-NUESTRA-BODA";
 const BRANCH = "main";
 const SITE_URL = "https://lozanoroa.github.io/RECUERDOS-DE-NUESTRA-BODA/";
@@ -245,4 +245,5 @@ function generateQR() {
         });
     };
 }
+
 
