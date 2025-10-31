@@ -214,7 +214,6 @@ async function downloadItem(url, message, type) {
     }
 }
 
-// === QR ÚNICO + DESCARGA AUTOMÁTICA ===
 function generateQR() {
     if (!isAuthenticated) {
         requestPasswordForQR();
@@ -234,7 +233,6 @@ function generateQR() {
         </p>
     `;
 
-    // DESCARGA AUTOMÁTICA
     const img = document.getElementById('qrImage');
     img.onload = () => {
         const canvas = document.createElement('canvas');
