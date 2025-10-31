@@ -1,5 +1,4 @@
-// === CONFIGURACIÓN FINAL ===
-const GIST_RAW_URL = "https://gist.githubusercontent.com/Lozanoroa/8ec0bcb515717fda8ed76e7b7d372a93/raw/9f854e05a9e5fabe6eec55ebb3c4e8c6f8f14abc/recuerdos.json";
+const GIST_RAW_URL = "https://gist.githubusercontent.com/Lozanoroa/0bd06c7b7a4f932982e3889c1c2f049b/raw/2574f9c6e620bb68fd96e2a564526360690d4daf/recuerdos.json";
 const GITHUB_TOKEN = "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";
 const REPO = "Lozanoroa/RECUERDOS-DE-NUESTRA-BODA";
 const BRANCH = "main";
@@ -9,7 +8,7 @@ const SECRET_PASSWORD = "Jonatanymichel";
 let selectedFile = null;
 let isAuthenticated = false;
 
-// DETECTAR SI ES MÓVIL
+
 const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 function openFilePicker() {
@@ -224,3 +223,4 @@ function checkQRPassword() {
         </p>
     `;
 }
+
